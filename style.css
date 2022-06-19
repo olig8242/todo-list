@@ -1,0 +1,94 @@
+/*remove the basic style from the html*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-image: linear-gradient(
+    120deg,
+    #f6d365,
+    #fda085
+  ); /*add a beautiful gradient to dazzle your viewers*/
+  font-family: "Poppins", serif;
+  min-height: 100vh; /*take the whole page*/
+}
+
+header {
+  font-size: 1.5rem;
+}
+
+header,
+/*give the form 20% of the page, get it all aligned in the center vertically and horizontally*/
+form {
+  min-height: 20vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/*general styling of the form/button*/
+form input,
+form button {
+  padding: 0.5rem;
+  font-size: 2rem;
+  border: none;
+  background: white;
+}
+
+form button {
+  color: #d88771;
+  background: white;
+  cursor: pointer; /*change pointer when hovering above button to a pointer*/
+  transition: all 0.3s ease; /*transition format when hovering above*/
+}
+
+/*change the colour to invert when hovered*/
+form button:hover {
+  background: #d88771;
+  color: white;
+}
+
+/*positioning the container into center again*/
+.todo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.todo-list {
+  min-width: 30%;
+  list-style: none;
+}
+
+.todo {
+  margin: 0.5rem;
+  background: white;
+  color: black;
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/*this will push the check box and bin icon to the far right*/
+
+.todo li {
+  flex: 1;
+}
+
+/*styling buttons for better aesthetics*/
+.trash-btn,
+.complete-btn {
+  background: #ff6f47;
+  color: white;
+  border: none;
+  padding: 1rem;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.complete-btn {
+  background: green;
+}
