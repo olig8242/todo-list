@@ -5,6 +5,7 @@ const todoList = document.querySelector(".todo-list"); //we will append all the 
 
 //event listeners
 todoButton.addEventListener("click", addToDo);
+todoList.addEventListener("click", deleteCheck);
 
 //functions
 
@@ -16,7 +17,7 @@ function addToDo(event) {
   todoDiv.classList.add("todo");
   //create LI
   const newTodo = document.createElement("li");
-  newTodo.innerText = "hey!";
+  newTodo.innerText = todoInput.value;
   newTodo.classList.add("todo-item");
   todoDiv.appendChild(newTodo);
   //CHECK MARK BUTTON
@@ -32,4 +33,27 @@ function addToDo(event) {
 
   //APEND TO LIST
   todoList.appendChild(todoDiv);
+  //clear input value
+  todoInput.value = "";
+}
+
+//delete check
+function deleteCheck(e) {
+  const item = e.target;
+  //DELETE TODO
+  if (item.classList[0] === "trash-btn") {
+    const todo = item.parentElement;
+
+    todo.classList.add("fall");
+    //add the below eventlistener so that it waits for the animation to end before removing the list item
+    todo.addEventListener("transitionend", function () {
+      todo.remove();
+    });
+  }
+
+  //CHECK MARK
+  if (item.classList[0] === "complete-btn") {
+    const todo = item.parentElement;
+    todo.classList.toggle("completed");
+  }
 }
