@@ -1,20 +1,20 @@
 //selectors
-const todoInput = document.querySelector(".todo-input");
-const todoButton = document.querySelector(".todo-button");
-const todoList = document.querySelector(".todo-list"); //we will append all the list items
-const filterOption = document.querySelector(".filter-todo");
+const todoInput = document.querySelector(".todo-input"); //targets the input box when adding todo items
+const todoButton = document.querySelector(".todo-button"); //targets the + button
+const todoList = document.querySelector(".todo-list"); //targets the parent container of the list items
+const filterOption = document.querySelector(".filter-todo"); //gives access to dropdown box for completed/notcomplete/all
 
 //event listeners
-todoButton.addEventListener("click", addToDo);
-todoList.addEventListener("click", deleteCheck);
-filterOption.addEventListener("click", filterTodo);
+todoButton.addEventListener("click", addToDo); //EL for adding list items
+todoList.addEventListener("click", deleteCheck); //EL for deleting list items
+filterOption.addEventListener("click", filterTodo); //EL for filtering list items
 
 //functions
 
 function addToDo(event) {
   //prevent form from submitting
   event.preventDefault();
-  //todo DIV
+  //creates the todo div item, which will then take the value of the text input, the completed button and delete button appended, then lastly appended to the ul list storing all todo items
   const todoDiv = document.createElement("div");
   todoDiv.classList.add("todo");
   //create LI
@@ -33,16 +33,17 @@ function addToDo(event) {
   trashButton.classList.add("trash-btn");
   todoDiv.appendChild(trashButton);
 
-  //APEND TO LIST
+  //APPEND TO LIST
   todoList.appendChild(todoDiv);
   //clear input value
-  todoInput.value = "";
+  todoInput.value = ""; //clears the text box so it's empty after submitting a todo item
 }
 
 //delete check
 function deleteCheck(e) {
   const item = e.target;
   //DELETE TODO
+  //if the first element of the item which we have clicked is the trash button - then we will target the parent element of the trash-btn, which is the todo div, then we will remove the div after the interal EL has ran, to ensure the transition finishes then the blocks will fill up.
   if (item.classList[0] === "trash-btn") {
     const todo = item.parentElement;
 
@@ -53,13 +54,14 @@ function deleteCheck(e) {
     });
   }
 
-  //CHECK MARK
+  //CHECK MARK - this will allow us to toggle completed CSS which gives it a line through and opacity of 0.5.
   if (item.classList[0] === "complete-btn") {
     const todo = item.parentElement;
     todo.classList.toggle("completed");
   }
 }
 
+//this function will run a foreach method to iterate through the todolist items - first selects all and gives their display to flex, 2nd will select only completed, changing their display to flex and changing the uncompleted display to hidden, this will only reveal the completed, the 3rd is the reverse of the 2nd.
 function filterTodo(e) {
   const todos = todoList.childNodes;
   todos.forEach(function (todo) {
